@@ -3,10 +3,11 @@ const config = require('../config');
 const { getBuffer, getGroupAdmins, getRandom, h2k, isUrl, Json, runtime, sleep , fetchJson } = require('../lib/functions')
 const { cmd, commands } = require('../command');
 const axios = require('axios');
-const footer_Bot = "> *© ᴘᴏᴡᴇʀᴅ ʙʏ bot name ᴍᴅ*"
+const footer_Bot = "> *© Powerd By Nithya XMD*"
 const path = require('path');
-const pakaya = "`";
 const fetch = require('node-fetch');
+const pakaya = "`";
+const rushprefix = ".";
 const {
   proto,
   generateWAMessageFromContent,
@@ -25,9 +26,9 @@ cmd({
 async ( conn, mek, m, { from, quoted, q, reply }) => {
     try {
 
-        const alivetharuzz = `*👋 Hellow there i'm \`ʜᴀᴄᴋᴇʀ-ᴍᴅ\` whatsapp bot 🚀*
+        const alivetharuzz = `*👋 Hellow there i'm \`Nithya XMD\` whatsapp bot 🚀*
 
-*👾 ʙᴏᴛ ɴᴀᴍᴇ : Hacker ᴍᴅ* 
+*👾 ʙᴏᴛ ɴᴀᴍᴇ : Nithya XMD* 
 *👤 ʙᴏᴛ ᴏᴡɴᴇʀ : *
 *📁 ᴍᴇᴍᴏʀʏ : ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}ᴍʙ / ${Math.round(require('os').totalmem / 1024 / 1024)}ᴍʙ*
 *🕑 ʀᴜɴᴛɪᴍᴇ : ${runtime(process.uptime())}*
@@ -53,18 +54,18 @@ ${footer_Bot}`;
     image: { url: config.MENU_IMAGE_URL },
     caption: alivetharuzz,
     contextInfo: {
-      mentionedJid: ['94740326138@s.whatsapp.net'], // specify mentioned JID(s) if any
+      mentionedJid: ['9478531830@s.whatsapp.net'], // specify mentioned JID(s) if any
       groupMentions: [],
       forwardingScore: 999,
       isForwarded: true,
       forwardedNewsletterMessageInfo: {
-          newsletterJid: '@newsletter',
-          newsletterName: "Bot name",
+          newsletterJid: '120363420920178095@newsletter',
+          newsletterName: "Nithya XMD",
           serverMessageId: 999
       },
       externalAdReply: {
-          title: 'Bot name',
-          body: 'ʜᴀᴄᴋᴇʀ ᴍᴅ ᴄᴏᴍᴍᴀɴᴅ ʟɪꜱᴛ',
+          title: 'Nithya XMD',
+          body: 'Nithya XMD Command List',
           mediaType: 1,
           sourceUrl: "https://github.com/Tharushaaaaa777",
           thumbnailUrl: config.MENU_IMAGE_URL, // This should match the image URL provided above
@@ -178,65 +179,5 @@ ${footer_Bot}` },{ quoted: mek });
     } catch (e) {
         console.error(e);
         reply(`${e}`);
-    }
-});      },
-                                    { quoted: receivedMsg }
-                                );
-                            } else {
-                                await conn.sendMessage(
-                                    senderID,
-                                    { text: selectedMenu.content, contextInfo: contextInfo },
-                                    { quoted: receivedMsg }
-                                );
-                            }
-
-                            await conn.sendMessage(senderID, {
-                                react: { text: '✅', key: receivedMsg.key }
-                            });
-
-                        } catch (e) {
-                            console.log('Menu reply error:', e);
-                            await conn.sendMessage(
-                                senderID,
-                                { text: selectedMenu.content, contextInfo: contextInfo },
-                                { quoted: receivedMsg }
-                            );
-                        }
-
-                    } else {
-                        await conn.sendMessage(
-                            senderID,
-                            {
-                                text: `❌ *Invalid Option!* ❌\n\nPlease reply with a number between 1-10 to select a menu.\n\n*Example:* Reply with "1" for Download Menu\n\n> ${config.DESCRIPTION}`,
-                                contextInfo: contextInfo
-                            },
-                            { quoted: receivedMsg }
-                        );
-                    }
-                }
-            } catch (e) {
-                console.log('Handler error:', e);
-            }
-        };
-
-        // Add listener
-        conn.ev.on("messages.upsert", handler);
-
-        // Remove listener after 5 minutes
-        setTimeout(() => {
-            conn.ev.off("messages.upsert", handler);
-        }, 300000);
-
-    } catch (e) {
-        console.error('Menu Error:', e);
-        try {
-            await conn.sendMessage(
-                from,
-                { text: `❌ Menu system is currently busy. Please try again later.\n\n> ${config.DESCRIPTION}` },
-                { quoted: mek }
-            );
-        } catch (finalError) {
-            console.log('Final error handling failed:', finalError);
-        }
     }
 });
